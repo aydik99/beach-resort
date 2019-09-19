@@ -7,11 +7,11 @@ import {RoomProvider, RoomConsumer} from './context'
 
 
 ReactDOM.render(
-    <RoomConsumer>
+    <RoomProvider>
         <Router>
             <App />
         </Router>
-    </RoomConsumer>
+    </RoomProvider>
 , 
 document.getElementById('root'))
 
