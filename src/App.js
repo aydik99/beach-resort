@@ -10,9 +10,12 @@ import Error from './pages/Error'
 function App() {
   return (
     <>
+    <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/rooms/" component={Rooms} />
       <Route exact path="/roooms/:slug" component={SingleRoom} /> 
+      <Route component={Error} />
+      </Switch> 
     </>
   );
 }
