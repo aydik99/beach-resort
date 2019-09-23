@@ -12,7 +12,6 @@ const RoomContext = React.createContext()
     }
 
     componentDidMount() {
-        console.log(items)
         let rooms = this.formatData(items)
         let featuredRooms = rooms.filter(room => room.featured === true)
         this.setState({
