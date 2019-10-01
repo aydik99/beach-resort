@@ -7,9 +7,9 @@ import Title from './Title'
 export default class FeaturedRooms extends Component {
     static contextType = RoomContext
     render() {
+        
 
        let { loading, featuredRooms : rooms} = this.context
-        
         rooms = rooms.map(room => {
             return <Room key={room.id} room={room} />
         })
@@ -19,7 +19,11 @@ export default class FeaturedRooms extends Component {
         return (
             <section className="featured-rooms">
                 <Title title="featured rooms" />
-                    <div className="featured-rooms-center">
+
+                 
+
+                <div className="featured-rooms-center">
+
                         {
                             loading ? <Loading /> : rooms
                         }
