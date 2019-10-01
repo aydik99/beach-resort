@@ -12,7 +12,6 @@ const RoomContext = React.createContext()
     }
 
     componentDidMount() {
-        console.log(items)
         let rooms = this.formatData(items)
         let featuredRooms = rooms.filter(room => room.featured === true)
         this.setState({
@@ -37,9 +36,20 @@ const RoomContext = React.createContext()
         return tempItems
     }
 
+    getRoom = (slug) => {
+        let tempRooms = [...this.state.rooms]
+        const room = tempRooms.find(room => room.slug === slug)
+        return room
+    }
+
     render() {
         return (
-            <RoomContext.Provider value={{...this.state}}>
+            <RoomContext.Provider 
+            value={{
+                ...this.state,
+                getRoom: this.getRoom
+            }}
+            >
                 {
                     this.props.children
                 }
@@ -49,5 +59,13 @@ const RoomContext = React.createContext()
 }
 
 const RoomConsumer = RoomContext.Consumer
+
+export function withRoomConsumer(Component) {
+    return function ConsumerWrapper(props) {
+        return <RoomConsumer>
+            { value => <Component {...props} context={value} />}
+        </RoomConsumer>    
+        }
+}
 
 export {RoomProvider, RoomConsumer, RoomContext}
